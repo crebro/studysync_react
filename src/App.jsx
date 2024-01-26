@@ -6,14 +6,12 @@ import {
 } from "react-router-dom";
 import { Login } from './pages/Auth/Login';
 import { Register } from './pages/Auth/Register';
+import Reader from './pages/Reader/Reader';
 import axios from 'axios';
 import UserProvider from './providers/UserProvider';
 
 axios.defaults.baseURL = 'http://localhost:8000/api';
 
-function ProviderWrapper(props) {
-  return
-}
 
 function App() {
   return (
@@ -24,6 +22,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/reader' element={<Reader />} />
           </Routes>
         </BrowserRouter>
       </UserProvider>;
