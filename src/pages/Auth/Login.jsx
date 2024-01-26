@@ -17,9 +17,9 @@ export function Login() {
         }
     }, [user]);
 
-    const register = async (e) => {
+    const login = async (e) => {
         e.preventDefault();
-        const response = axios.post('/register', {
+        const response = axios.post('/login', {
             email: emailRef.current.value,
             password: passwordRef.current.value,
         })
@@ -64,7 +64,6 @@ export function Login() {
                                 <>
                                     <label
                                         htmlFor="password"
-                                        ref={passwordRef}
                                         className="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-white"
                                     >
                                         Password
@@ -72,6 +71,7 @@ export function Login() {
                                     <input
                                         type="password"
                                         id="password"
+                                        ref={passwordRef}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     />
                                 </>
@@ -80,6 +80,7 @@ export function Login() {
                                 <div>
                                     <button
                                         type="submit"
+                                        onClick={login}
                                         className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     >
                                         Logni
