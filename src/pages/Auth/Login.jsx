@@ -13,7 +13,7 @@ export function Login() {
     useEffect(() => {
         console.log(user);
         if (user) {
-            navigate('/');
+            navigate('/dashboard');
         }
     }, [user]);
 

@@ -5,6 +5,7 @@ GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${versi
 
 function PdfToImageConverter({ pdfUrl, imageRender, onImageClick }) {
     const [pageImages, setPageImages] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const convertToImages = async () => {
@@ -33,6 +34,7 @@ function PdfToImageConverter({ pdfUrl, imageRender, onImageClick }) {
             }
 
             setPageImages(images);
+            setLoading(false);
         };
 
         convertToImages();
@@ -40,6 +42,9 @@ function PdfToImageConverter({ pdfUrl, imageRender, onImageClick }) {
 
     return (
         <div>
+            {
+                loading ? <div>Loading...</div> : null
+            }
             {pageImages.map((image, index) => (
                 <> {imageRender({ src: image, key: index, alt: `Page ${index + 1}`, onClick: (e) => onImageClick(index + 1, e) })} </>
                 // <imageRender src={image} key={index} alt={`Page ${index + 1}`} />

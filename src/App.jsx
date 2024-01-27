@@ -1,5 +1,5 @@
 import './App.css'
-import Home from './pages/home'
+import Home from './pages/Home/home'
 
 import {
   BrowserRouter, Route, Routes
@@ -30,6 +30,7 @@ function App() {
             <Route path='/dashboard'>
               <Route path='/dashboard/' element={<DashboardLayout children={<Dashboard />} />} />
               <Route path='/dashboard/reader' element={<DashboardLayout children={<Reader />} />} />
+              <Route path='/dashboard/reader/:location' element={<DashboardLayout children={<Reader />} />} />
               <Route path='/dashboard/your-spaces' element={<DashboardLayout children={<Spaces />} />} />
               <Route path='/dashboard/spaces/:id' element={<DashboardLayout children={<SingleSpace />} />} />
               {/* <Route path='/dashboard/else' element={<> this is an else page new page</>} /> */}

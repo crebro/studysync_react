@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Navigation from "../Components/Navigation";
 import axios from "axios";
 import { authenticatedPost } from "utils/api"
+import { Link } from "react-router-dom";
 
 
 export default function Spaces(props) {
@@ -62,10 +63,10 @@ export default function Spaces(props) {
             <div className='flex flex-col'>
                 {spaces.map(space => {
                     return (
-                        <div className="flex flex-col">
+                        <Link className="flex flex-col" to={`/dashboard/spaces/${space.space_identifier}`}>
                             <div className="text-lg"> {space.name}</div>
                             <div className="text-sm"> {space.description}</div>
-                        </div>)
+                        </Link>)
                 })}
             </div>
         </div>

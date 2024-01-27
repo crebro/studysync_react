@@ -11,9 +11,8 @@ export function Register(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(user);
         if (user) {
-            navigate('/');
+            navigate('/dashboard');
         }
     }, [user]);
 
