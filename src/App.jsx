@@ -14,6 +14,7 @@ import Spaces from './pages/Dashboard/Spaces/Spaces';
 import DashboardLayout from 'pages/Dashboard/DashboardLayout';
 import SingleSpace from 'pages/Dashboard/Spaces/SingleSpace';
 import { CreateSpace } from 'pages/Dashboard/Spaces/CreateSpace';
+import { InvitationJoin } from 'pages/InvitationJoin';
 
 axios.defaults.baseURL = 'http://localhost:8000/api';
 
@@ -38,6 +39,7 @@ function App() {
               {/* <Route path='/dashboard/else' element={<> this is an else page new page</>} /> */}
             </Route>
 
+            <Route path='/invitation/join/:invitation_code' element={<DashboardLayout children={<InvitationJoin />} />} />
           </Routes>
 
         </BrowserRouter>

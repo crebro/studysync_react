@@ -40,6 +40,8 @@ export default function Reader() {
 
     const fetchAnnotations = async () => {
         // fetch annotations from firebase
+
+
         await onSnapshot(collection(db, "annotations"), (querySnapshot) => {
             const annotationsData = querySnapshot.docs
                 .map((doc) => ({ ...doc.data(), id: doc.id }));

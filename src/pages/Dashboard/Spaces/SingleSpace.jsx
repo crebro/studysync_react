@@ -10,6 +10,7 @@ export default function SingleSpace() {
     const nameRef = useRef(null);
 
     const [showNoteCreateModal, setShowNoteCreateModal] = useState(false);
+    const [showInvitationModal, setShowInvitationModal] = useState(false);
 
     useEffect(() => {
         authenticatedRequest(`/spaces/${id}`)
@@ -43,27 +44,34 @@ export default function SingleSpace() {
 
 
 
-                {space && <> <div className="flex flex-col">
-                    <div className="text-3xl">
-                        Your Space; {space.name}
+                {space && <> <div className="flex items-center justify-between">
+                    <div>
+                        <div className="text-3xl">
+                            Your Study Space; {space.name}
+                        </div>
+                        <div className="text-sm"> {space.description}</div>
                     </div>
-                    <div className="text-sm"> {space.description}</div>
+                    <div>
+                        <div onClick={() => setShowInvitationModal(true)} className="bg-blue-500 text-white px-4 py-2 rounded-lg"> Invite Members </div>
+                    </div>
+
+
                 </div>
+                    <hr />
 
 
 
-                    <div className="flex">
+                    <div className="flex mt-4">
                         <div className="flex-1 mr-4">
                             <div className="flex items-center justify-between  mb-2">
-                                <div className="text-2xl"> Notes </div>
+                                <div className="text-2xl"> Documents </div>
                                 <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" onClick={() => setShowNoteCreateModal(true)} > Add </button>
                             </div>
                             {
                                 space.notes && space.notes.map(note => {
-                                    return <div className="flex bg-gray-200 px-4 py-2 items-center justify-between">
+                                    return <div className="flex bg-gray-200 px-4 py-2 items-center justify-between mb-2 rounded-lg">
                                         <div className="text-lg"> {note.title}</div>
                                         <Link to={`/dashboard/reader/${note.location}`}> Open link </Link>
-                                        {/* <div className="text-sm"> {note.description}</div> */}
                                     </div>
                                 })
                             }
@@ -89,9 +97,21 @@ export default function SingleSpace() {
                             </div>
                         </div>
                     }
-                    <>
 
-                    </>
+                    {
+                        showInvitationModal && <div className="top-0 left-0 w-[100vw] h-[100vh] flex flex-col items-center justify-center " style={{ backgroundColor: "rgba(0, 0, 0, 0.2)", position: "fixed" }}>
+                            <div className="flex flex-col p-4 bg-white rounded-lg">
+                                <input
+                                    type="text"
+                                    ref={nameRef}
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    value={`http://localhost:3000/invitation/join/${space.invitation_code}`}
+                                    readOnly
+                                />
+                                <button className="bg-gray-200 text-black rounded-sm px-4 py-2 mt-4" onClick={() => setShowInvitationModal(false)}> Cancel </button>
+                            </div>
+                        </div>
+                    }
 
                 </>}
 

@@ -38,7 +38,7 @@ export default function Dashboard(props) {
 
                         <Link to="/dashboard/your-flashcards" className="flex-1 p-4 bg-gray-200 rounded-lg mx-2">
                             <div className="text-2xl"> Flashcards </div>
-                            <div className="text-sm"> Where you can build on dashboard/your knowledge. </div>
+                            <div className="text-sm"> Where you can build on your knowledge. </div>
                         </Link>
                     </div>
                 </div>

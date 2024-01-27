@@ -15,8 +15,7 @@ export function CreateSpace(props) {
         }).catch(e => { return null; });
 
         if (response) {
-            navigate(`/dashboard/your-spaces/${response.data.space.identifier}`);
-            // setSpaces([...spaces, { name: spaceNameRef.current.value, description: spaceDescriptionRef.current.value }]);
+            navigate(`/dashboard/your-spaces/${response.data.space.space_identifier}`);
         }
     }
 
