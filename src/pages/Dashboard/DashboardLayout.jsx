@@ -1,3 +1,4 @@
+import NavBar from "NavBar";
 import Navigation from "pages/Dashboard/Components/Navigation"
 import { UserContext } from "providers/UserProvider";
 import { useContext, useEffect } from "react";
@@ -17,6 +18,7 @@ export default function DashboardLayout(props) {
 
     return (
         <>
+        <NavBar/>
             <Navigation />
             {props.children}
         </>

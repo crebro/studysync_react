@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useEffect, useRef } from 'react';
 import { UserContext } from '../../providers/UserProvider';
 import axios from 'axios';
+import logo from '../../assets/logoNoBg.png'
 import { toast } from 'react-hot-toast';
 
 export function Login() {
@@ -39,9 +40,9 @@ export function Login() {
                 <div className="flex flex-col items-center justify-center w-full h-full">
                     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
                         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                            <img
+                            <img                
                                 className="mx-auto h-10 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                    src={logo}
                                 alt="Your Company"
                             />
                             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
