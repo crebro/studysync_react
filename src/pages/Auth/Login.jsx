@@ -19,11 +19,11 @@ export function Login() {
 
     const login = async (e) => {
         e.preventDefault();
-        const response = axios.post('/login', {
+        const response = await axios.post('/login', {
             email: emailRef.current.value,
             password: passwordRef.current.value,
         })
-        if (response.status === 200) {
+        if (response.data.token) {
             localStorage.setItem('token', response.data.token);
             setUser(response.data.user);
         }

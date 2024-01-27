@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import PdfToImageConverter from '../../Components/pdftoImageConvert';
 import { useParams } from 'react-router-dom';
+import { db } from "../../firebase/firebase"
+import { collection, addDoc, getDocs, onSnapshot } from 'firebase/firestore';
 
 function ImageRender(props) {
     const annotations = props.annotations;
@@ -35,10 +37,19 @@ export default function Reader() {
         return mapping;
     }, [annotations]);
 
-    console.log(pageAnnotations);
+
+    const fetchAnnotations = async () => {
+        // fetch annotations from firebase
+        await onSnapshot(collection(db, "annotations"), (querySnapshot) => {
+            const annotationsData = querySnapshot.docs
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
+            setAnnotations(annotationsData);
+
+        });
+    }
 
 
-    const imageClick = (page, e) => {
+    const imageClick = async (page, e) => {
         const { clientX, clientY } = e;
         const boundingRect = e.target.getBoundingClientRect();
         const { x, y } = boundingRect;
@@ -49,8 +60,12 @@ export default function Reader() {
             page: page
         }
 
-        setModalOpen({ open: true, annotation });
+        setModalOpen({ open: true, annotation })
     }
+
+    useEffect(() => {
+        fetchAnnotations();
+    }, [])
 
 
     return <div className='flex flex-col items-center justify-center'>
@@ -71,6 +86,14 @@ export default function Reader() {
 
                                 setAnnotations([...annotations, { ...modalOpen.annotation, text: annotationRef.current.value }]);
                                 setModalOpen({ open: false, annotation: null });
+
+                                addDoc(collection(db, "annotations"), {
+                                    x: modalOpen.annotation.x,
+                                    y: modalOpen.annotation.y,
+                                    page: modalOpen.annotation.page,
+                                    note_location_identifier: location,
+                                    text: annotationRef.current.value,
+                                });
                             }}
                             autoFocus
                         />                               

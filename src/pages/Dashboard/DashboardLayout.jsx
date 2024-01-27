@@ -13,6 +13,8 @@ export default function DashboardLayout(props) {
         }
     }, []);
 
+    if (!user) return (<></>);
+
     return (
         <>
             <Navigation />
