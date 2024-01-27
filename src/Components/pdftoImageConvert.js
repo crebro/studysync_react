@@ -3,38 +3,45 @@ import { GlobalWorkerOptions, getDocument, version } from 'pdfjs-dist';
 
 GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.mjs`;
 
-function PdfToImageConverter({ pdfUrl, imageRender, onImageClick }) {
+function PdfToImageConverter({ pdfUrl, imageRender, onImageClick, fallback }) {
     const [pageImages, setPageImages] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const convertToImages = async () => {
-            const pdf = await getDocument(pdfUrl).promise;
+            try {
 
-            const images = [];
-            for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
-                const page = await pdf.getPage(pageNumber);
-                const scale = 1.5; // You can adjust the scale as needed for image quality.
+                const pdf = await getDocument(pdfUrl).promise;
 
-                const viewport = page.getViewport({ scale });
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
+                const images = [];
+                for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+                    const page = await pdf.getPage(pageNumber);
+                    const scale = 1.5; // You can adjust the scale as needed for image quality.
 
-                const renderContext = {
-                    canvasContext: context,
-                    viewport,
-                };
+                    const viewport = page.getViewport({ scale });
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
 
-                await page.render(renderContext).promise;
-                const image = canvas.toDataURL('image/jpeg'); // You can use other formats like 'image/png'
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport,
+                    };
 
-                images.push(image);
+                    await page.render(renderContext).promise;
+                    const image = canvas.toDataURL('image/jpeg'); // You can use other formats like 'image/png'
+
+                    images.push(image);
+                }
+
+                setPageImages(images);
+                setLoading(false);
+            } catch (e) {
+                fallback();
+                setLoading(false);
             }
 
-            setPageImages(images);
-            setLoading(false);
         };
 
         convertToImages();

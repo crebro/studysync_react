@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import PdfToImageConverter from '../../Components/pdftoImageConvert';
 import { useParams } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ export default function Reader() {
     const [modalOpen, setModalOpen] = React.useState({ open: false, annotation: null });
     const annotationRef = useRef();
     const { location } = useParams();
+    const [error, setError] = useState();
 
     const imageClick = (page, e) => {
         const { clientX, clientY } = e;
@@ -27,7 +28,8 @@ export default function Reader() {
     }
 
     return <div className='flex flex-col items-center justify-center'>
-        <PdfToImageConverter imageRender={ImageRender} pdfUrl={`http://localhost:8000/storage/${location}`} onImageClick={imageClick} />
+        <PdfToImageConverter fallback={() => setError('Error processing the document')} imageRender={ImageRender} pdfUrl={`http://localhost:8000/storage/${location}`} onImageClick={imageClick} />
+        {error && <div className='text-red-500'> {error} </div>} 
         {
             (modalOpen.open && modalOpen.annotation) &&
             <div className="top-0 left-0 w-[100vw] h-[100vh] flex flex-col items-center justify-center " style={{ backgroundColor: "rgba(0, 0, 0, 0.2)", position: "fixed" }}>
