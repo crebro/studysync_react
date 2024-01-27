@@ -15,9 +15,9 @@ import DashboardLayout from 'pages/Dashboard/DashboardLayout';
 import SingleSpace from 'pages/Dashboard/Spaces/SingleSpace';
 import { CreateSpace } from 'pages/Dashboard/Spaces/CreateSpace';
 import { InvitationJoin } from 'pages/InvitationJoin';
-
+import NavBar from 'NavBar';
+import Setting from 'pages/setting'
 axios.defaults.baseURL = 'http://localhost:8000/api';
-
 
 function App() {
   return (
@@ -40,8 +40,10 @@ function App() {
             </Route>
 
             <Route path='/invitation/join/:invitation_code' element={<DashboardLayout children={<InvitationJoin />} />} />
+            <Route path='/setting' element={<Setting/>}/>
           </Routes>
 
+        
         </BrowserRouter>
       </UserProvider>;
 
