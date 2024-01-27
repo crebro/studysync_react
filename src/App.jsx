@@ -15,6 +15,7 @@ import DashboardLayout from 'pages/Dashboard/DashboardLayout';
 import SingleSpace from 'pages/Dashboard/Spaces/SingleSpace';
 import { CreateSpace } from 'pages/Dashboard/Spaces/CreateSpace';
 import { InvitationJoin } from 'pages/InvitationJoin';
+import { FlashDeck } from 'pages/Dashboard/Spaces/FlashDeck';
 
 axios.defaults.baseURL = 'http://localhost:8000/api';
 
@@ -36,6 +37,7 @@ function App() {
               <Route path='/dashboard/your-spaces' element={<DashboardLayout children={<Spaces />} />} />
               <Route path='/dashboard/your-spaces/create' element={<DashboardLayout children={<CreateSpace />} />} />
               <Route path='/dashboard/spaces/:id' element={<DashboardLayout children={<SingleSpace />} />} />
+              <Route path='/dashboard/flashdecks/:id' element={<DashboardLayout children={<FlashDeck />} />} />
               {/* <Route path='/dashboard/else' element={<> this is an else page new page</>} /> */}
             </Route>
 
