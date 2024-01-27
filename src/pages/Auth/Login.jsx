@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useEffect, useRef } from 'react';
 import { UserContext } from '../../providers/UserProvider';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 export function Login() {
     const { user, setUser } = useContext(UserContext);
@@ -22,6 +23,9 @@ export function Login() {
         const response = await axios.post('/login', {
             email: emailRef.current.value,
             password: passwordRef.current.value,
+        }).catch(e => {
+            toast.error(e.response.data.message);
+            return e.response;
         })
         if (response.data.token) {
             localStorage.setItem('token', response.data.token);
@@ -83,7 +87,7 @@ export function Login() {
                                         onClick={login}
                                         className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     >
-                                        Logni
+                                        Login
                                     </button>
                                 </div>
                             </form>

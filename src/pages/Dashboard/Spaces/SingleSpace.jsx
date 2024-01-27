@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import { authenticatedPost, authenticatedRequest } from "utils/api"
 
@@ -29,8 +30,8 @@ export default function SingleSpace() {
         formData.append('title', nameRef.current.value);
         formData.append('space_id', space.id);
 
-        const response = await authenticatedPost(`/notes`, formData).catch(e => { return null; });
-        if (response) {
+        const response = await authenticatedPost(`/notes`, formData).catch(e => { toast.error(e.response.data.message); return e.response; });
+        if (response.data.note) {
             setShowNoteCreateModal(false);
             setSpace({ ...space, notes: [...space.notes, response.data.note] });
         }

@@ -16,6 +16,7 @@ import SingleSpace from 'pages/Dashboard/Spaces/SingleSpace';
 import { CreateSpace } from 'pages/Dashboard/Spaces/CreateSpace';
 import { InvitationJoin } from 'pages/InvitationJoin';
 import { FlashDeck } from 'pages/Dashboard/Spaces/FlashDeck';
+import { Toaster } from 'react-hot-toast';
 
 axios.defaults.baseURL = 'http://localhost:8000/api';
 
@@ -45,6 +46,7 @@ function App() {
           </Routes>
 
         </BrowserRouter>
+        <Toaster />
       </UserProvider>;
 
     </>
