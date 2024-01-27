@@ -40,6 +40,7 @@ function PdfToImageConverter({ pdfUrl, imageRender, onImageClick, fallback }) {
             } catch (e) {
                 fallback();
                 setLoading(false);
+                throw e;
             }
 
         };
@@ -53,7 +54,7 @@ function PdfToImageConverter({ pdfUrl, imageRender, onImageClick, fallback }) {
                 loading ? <div>Loading...</div> : null
             }
             {pageImages.map((image, index) => (
-                <> {imageRender({ src: image, key: index, alt: `Page ${index + 1}`, onClick: (e) => onImageClick(index + 1, e) })} </>
+                <> {imageRender({ src: image, key: index, page: index + 1, alt: `Page ${index + 1}`, onClick: (e) => onImageClick(index + 1, e) })} </>
                 // <imageRender src={image} key={index} alt={`Page ${index + 1}`} />
                 // <img key={index} src={image} alt={`Page ${index + 1}`} />
             ))}
