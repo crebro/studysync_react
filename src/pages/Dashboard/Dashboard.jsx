@@ -21,7 +21,7 @@ export default function Dashboard(props) {
                     <div className='text-2xl'>
                         Hey, <span className='text-blue-600'>{user.name}  </span>
                     </div>   
-                    <div className=''>
+                    <div className='text-sm'>
                         Let's Continue with your work
                     </div>
 

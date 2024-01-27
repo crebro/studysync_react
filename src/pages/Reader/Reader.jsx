@@ -100,7 +100,9 @@ export default function Reader() {
                                 });
                             }}
                             autoFocus
-                        />                               
+                        />   
+
+
                     </div>
             </div>
 
