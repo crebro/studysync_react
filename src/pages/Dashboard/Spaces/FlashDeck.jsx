@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { authenticatedRequest } from 'utils/api';
+import { useNavigate, useParams } from 'react-router-dom';
+import { authenticatedPost, authenticatedRequest } from 'utils/api';
 import ReactCardFlip from 'react-card-flip';
+import { toast } from 'react-hot-toast';
 
 export function FlashDeck(props) {
     const { id } = useParams();
     const [flashDeck, setFlashDeck] = useState(null);
     const [isFlipped, setIsFlipped] = useState(false);
     const [currentCard, setCurrentCard] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         authenticatedRequest(`/question_banks/${id}`)
@@ -19,6 +21,14 @@ export function FlashDeck(props) {
                 console.log(err);
             });
     }, []);
+
+    const markSessionComplete = async () => {
+        const response = await authenticatedPost(`/question_banks/${id}/complete`,);
+        if (response.data.question_bank) {
+            toast.success('Session marked as complete!');
+            navigate(`/dashboard`);
+        }
+    }
 
     return (
         <>
@@ -59,7 +69,7 @@ export function FlashDeck(props) {
 
                                     {
                                         currentCard === flashDeck.questions.length - 1 &&
-                                        <button className='py-2 rounded-lg bg-green-400 w-full text-white mt-2' onClick={() => setCurrentCard(0)}> Mark Session as Complete </button>
+                                        <button className='py-2 rounded-lg bg-green-400 w-full text-white mt-2' onClick={() => markSessionComplete()}> Mark Session as Complete </button>
                                     }
                                 </div>
 
