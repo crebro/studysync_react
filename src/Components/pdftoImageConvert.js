@@ -33,9 +33,9 @@ function PdfToImageConverter({ pdfUrl, imageRender, onImageClick, fallback }) {
                     const image = canvas.toDataURL('image/jpeg'); // You can use other formats like 'image/png'
 
                     images.push(image);
+                    setPageImages([...images, image]);
                 }
 
-                setPageImages(images);
                 setLoading(false);
             } catch (e) {
                 fallback();

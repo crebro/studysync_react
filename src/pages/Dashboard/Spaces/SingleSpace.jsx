@@ -78,7 +78,16 @@ export default function SingleSpace() {
                         </div>
                         <div className="flex-1 ml-4">
                             <div className="text-2xl"> Flash Cards </div>
+                            {
+                                space.question_banks && space.question_banks.map(questionBank => {
+                                    return <div className="flex bg-gray-200 px-4 py-2 items-center justify-between mb-2 rounded-lg">
+                                        <div className="text-lg"> {questionBank.name}</div>
+                                        {/* <Link to={`/dashboard/reader/${note.location}`}> Open link </Link> */}
+                                </div>
+                            })
+                            }
                         </div>
+
                     </div>
 
 

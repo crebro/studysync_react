@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import PdfToImageConverter from '../../Components/pdftoImageConvert';
 import { useParams } from 'react-router-dom';
 import { db } from "../../firebase/firebase"
-import { collection, addDoc, getDocs, onSnapshot } from 'firebase/firestore';
+import { collection, addDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore';
 
 function ImageRender(props) {
     const annotations = props.annotations;
@@ -40,9 +40,11 @@ export default function Reader() {
 
     const fetchAnnotations = async () => {
         // fetch annotations from firebase
+        const q = query(collection(db, "annotations"), where("note_location_identifier", "==", location));
 
+        // const querySnapshot = await getDocs(q);
 
-        await onSnapshot(collection(db, "annotations"), (querySnapshot) => {
+        await onSnapshot(q, (querySnapshot) => {
             const annotationsData = querySnapshot.docs
                 .map((doc) => ({ ...doc.data(), id: doc.id }));
             setAnnotations(annotationsData);
@@ -70,7 +72,7 @@ export default function Reader() {
     }, [])
 
 
-    return <div className='flex flex-col items-center justify-center'>
+    return <div className='flex flex-col items-center justify-center bg-gray-200'>
         <PdfToImageConverter fallback={() => setError('Error processing the document')} imageRender={(props) => <ImageRender annotations={pageAnnotations[props.page]} {...props} />} pdfUrl={`http://localhost:8000/storage/${location}`} onImageClick={imageClick} />
         {error && <div className='text-red-500'> {error} </div>} 
         {

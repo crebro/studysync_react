@@ -22,23 +22,18 @@ export default function Dashboard(props) {
                         Hey, <span className='text-blue-600'>{user.name}  </span>
                     </div>   
                     <div className=''>
-                        Let's Continue with dashboard/your work
+                        Let's Continue with your work
                     </div>
 
 
                     <div className="flex items-center mt-4 ">
                         <Link to="/dashboard/your-spaces" className="flex-1 p-4 bg-gray-200 rounded-lg mx-2">
                             <div className="text-2xl"> Your Spaces </div>
-                            <div className="text-sm"> Where you can share what you know. </div>
+                            <div className="text-sm"> Where you can share what you know. Collaborate with your friends, learn something new. </div>
                         </Link>
-                        <Link to="/dashboard/your-notes" className="flex-1 p-4 bg-gray-200 rounded-lg mx-2">
-                            <div className="text-2xl"> Your Notes </div>
-                            <div className="text-sm"> Where you can continue your study session. </div>
-                        </Link>
-
                         <Link to="/dashboard/your-flashcards" className="flex-1 p-4 bg-gray-200 rounded-lg mx-2">
                             <div className="text-2xl"> Flashcards </div>
-                            <div className="text-sm"> Where you can build on your knowledge. </div>
+                            <div className="text-sm"> Where you can build on your knowledge. Your new flashcards session awaits you. </div>
                         </Link>
                     </div>
                 </div>
