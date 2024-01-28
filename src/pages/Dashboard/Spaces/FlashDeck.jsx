@@ -45,11 +45,11 @@ export function FlashDeck(props) {
                     flashDeck &&
 
                     <>
-                            <div className='relative'>
-                                <div className="h-2 bg-gray-400 absolute top-0 left-0 w-full"></div>
-                                <div className="h-2 bg-blue-400 absolute top-0 left-0" style={{ width: `${((currentCard + 1) / flashDeck.questions.length) * 100}%` }}></div>
+                            <div className='relative mt-4'>
+                                <div className="h-2 bg-gray-400 absolute top-0 left-0 w-full rounded-lg"></div>
+                                <div className="h-2 bg-blue-400 absolute top-0 left-0 rounded-lg" style={{ width: `${((currentCard + 1) / flashDeck.questions.length) * 100}%` }}></div>
                             </div>
-                            <div className='mt-4 flex flex-col items-center'>
+                            <div className='mt-12 flex flex-col items-center'>
 
                                 <div className="w-80">
 

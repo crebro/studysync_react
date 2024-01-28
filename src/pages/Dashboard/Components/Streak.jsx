@@ -27,7 +27,9 @@ export default function Streak(props) {
         <>
             <div className="flex items-center mt-4 flex-col justify-center">
                 <div className="text-2xl"> Your Flash Cards Streak </div>
-                {streak}
+                <div className="text-4xl text-[#ffab19] text-stroke font-extrabold">
+                    {streak}
+                </div>
 
                 <div className="flex mt-4">
                     {

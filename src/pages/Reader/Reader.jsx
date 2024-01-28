@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import PdfToImageConverter from '../../Components/pdftoImageConvert';
 import { useParams } from 'react-router-dom';
 import { db } from "../../firebase/firebase"
-import { collection, addDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot, query, where } from 'firebase/firestore';
 
 function ImageRender(props) {
     const annotations = props.annotations;
@@ -41,8 +41,6 @@ export default function Reader() {
     const fetchAnnotations = async () => {
         // fetch annotations from firebase
         const q = query(collection(db, "annotations"), where("note_location_identifier", "==", location));
-
-        // const querySnapshot = await getDocs(q);
 
         await onSnapshot(q, (querySnapshot) => {
             const annotationsData = querySnapshot.docs
@@ -86,7 +84,7 @@ export default function Reader() {
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             ref={annotationRef}
                             onKeyDown={(e) => {
-                                if (e.key != "Enter") return;
+                                if (e.key !== "Enter") return;
 
                                 setAnnotations([...annotations, { ...modalOpen.annotation, text: annotationRef.current.value }]);
                                 setModalOpen({ open: false, annotation: null });

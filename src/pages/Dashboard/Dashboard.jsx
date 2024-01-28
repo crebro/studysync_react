@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { UserContext } from '../../providers/UserProvider';
 import { Link, useNavigate } from 'react-router-dom';
-import Navigation from './Components/Navigation';
-import { CheckCircle, CheckCircleSolid } from 'Components/Icons';
 import Streak from './Components/Streak';
 
 

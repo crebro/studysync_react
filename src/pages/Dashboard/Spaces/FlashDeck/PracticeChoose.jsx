@@ -5,7 +5,6 @@ import { authenticatedRequest } from 'utils/api';
 
 export function PracticeChoose(props) {
     const [flashDecks, setFlashDecks] = React.useState([]);
-    const { user } = useContext(UserContext);
 
     useEffect(() => {
         authenticatedRequest('/question_banks/available')
@@ -27,15 +26,17 @@ export function PracticeChoose(props) {
                 </div>
 
 
-                <div className='grid grid-cols-3 mt-2'>
+                <div className='grid grid-cols-3 mt-2 w-[80vw]'>
 
                     {flashDecks && flashDecks.map(deck => {
                         return (
-                            <Link className="flex flex-col bg-gray-200 rounded-lg p-4 m-2" to={`/dashboard/flashdecks/${deck.id}`}>
+                            <Link className="flex flex-col bg-gray-200 rounded-lg p-4 m-2 relative" to={`/dashboard/flashdecks/${deck.id}`}>
                                 <div className="text-lg"> {deck.name}</div>
-                                {/* {flashDecks.creator_id === user.id && <div className="text-sm text-blue-500"> You are the creator of this deck. </div>} */}
+                                <div className="bg-gray-500 rounded-lg p-4 m-2 w-full h-full absolute top-0 left-0" style={{ transform: `translate(1%, 1%)`, zIndex: -10 }}> </div>
+                                <div className="bg-gray-600 rounded-lg p-4 m-2 w-full h-full absolute top-0 left-0" style={{ transform: `translate(2%, 2%)`, zIndex: -20 }}> </div>
                             </Link>)
                     })}
+                    {/* <div className="bg-blue-500">hello</div> */}
                 </div>
 
             </div>

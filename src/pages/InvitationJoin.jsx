@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { authenticatedPost } from 'utils/api';
 
 export function InvitationJoin(props) {
-    const { user, setUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const { invitation_code } = useParams();
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ export function InvitationJoin(props) {
                 navigate('/dashboard/your-spaces');
             }
         });
-    }, []);
+    }, [user]);
 
     return (
         <>
