@@ -21,7 +21,7 @@ export function PracticeChoose(props) {
             <div className="flex flex-col items-center mt-4">
                 <div className="flex items-center justify-start w-[80vw]">
                     <div className="text-3xl">
-                        Available Question Banks
+                        Available Flash Cards
                     </div>
                 </div>
 

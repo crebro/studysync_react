@@ -16,10 +16,15 @@ const days = {
 export default function Streak(props) {
     const [streak, setStreak] = React.useState(0);
     const [daysStreak, setDaysStreak] = React.useState([]);
+    const [streakLeaderboard, setStreakLeaderboard] = React.useState([]); 
+
 
     useEffect(() => {
         authenticatedRequest('/question_banks/user/streak_details')
             .then(res => { setStreak(res.data.streak); setDaysStreak(res.data.weeklydetails) })
+
+        authenticatedRequest('/question_banks/user/streak_leaderboard')
+            .then(res => { setStreakLeaderboard(res.data.leaderboard) })
     }, [])
 
 
@@ -27,7 +32,7 @@ export default function Streak(props) {
         <>
             <div className="flex items-center mt-4 flex-col justify-center">
                 <div className="text-2xl"> Your Flash Cards Streak </div>
-                <div className="text-4xl text-[#ffab19] text-stroke font-extrabold">
+                <div className="text-4xl text-[#ffab19] font-extrabold">
                     {streak}
                 </div>
 
@@ -43,6 +48,29 @@ export default function Streak(props) {
                         })
                     }
                 </div>
+
+
+                <div className='flex flex-col items-center justify-center mt-8'>
+                    <div className='px-4 py-4 rounded-lg bg-gray-200'>
+
+
+                        <div className="text-2xl mt-4 font-bold"> Streak Leaderboard </div>
+                        <div className="flex flex-col items-center">
+                            {
+                                streakLeaderboard.map((streak, i) => {
+                                    return <div className="flex items-center justify-center mt-2">
+                                        <div className="text-2xl"> {i + 1}. </div>
+                                        <div className="text-2xl"> {streak.user.name} </div>
+                                        <div className="text-2xl text-stroke font-extrabold ml-4"> {streak.streak} </div>
+                                    </div>
+                                })
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
 
 
             </div>

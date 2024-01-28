@@ -154,7 +154,7 @@ export default function SingleSpace() {
                                     placeholder="Add name"
                                 />
                                 <button className="bg-blue-600 text-white rounded-sm px-4 py-2 mt-4" onClick={submitFlashDeck}> Submit </button>
-                                <button className="bg-gray-200 text-black rounded-sm px-4 py-2 mt-4" onClick={() => setShowNoteCreateModal(false)}> Cancel </button>
+                                <button className="bg-gray-200 text-black rounded-sm px-4 py-2 mt-4" onClick={() => setShowFlashCardCreateModel(false)}> Cancel </button>
                             </div>
                         </div>
                     }
