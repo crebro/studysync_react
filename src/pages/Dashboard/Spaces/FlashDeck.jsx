@@ -42,7 +42,7 @@ export function FlashDeck(props) {
                         </div>
                     </div>
                     {
-                    flashDeck &&
+                        flashDeck && flashDeck.questions.length != 0 &&
 
                     <>
                             <div className='relative mt-4'>

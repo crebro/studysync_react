@@ -18,6 +18,7 @@ import { InvitationJoin } from 'pages/InvitationJoin';
 import { FlashDeck } from 'pages/Dashboard/Spaces/FlashDeck';
 import { Toaster } from 'react-hot-toast';
 import { PracticeChoose } from 'pages/Dashboard/Spaces/FlashDeck/PracticeChoose';
+import { UpdateFlashDeck } from 'pages/Dashboard/Spaces/FlashDeck/UpdateFlashDeck';
 
 axios.defaults.baseURL = 'http://localhost:8000/api';
 
@@ -40,6 +41,7 @@ function App() {
               <Route path='/dashboard/your-spaces/create' element={<DashboardLayout children={<CreateSpace />} />} />
               <Route path='/dashboard/spaces/:id' element={<DashboardLayout children={<SingleSpace />} />} />
               <Route path='/dashboard/flashdecks/:id' element={<DashboardLayout children={<FlashDeck />} />} />
+              <Route path='/dashboard/flashdecks/update/:id' element={<DashboardLayout children={<UpdateFlashDeck />} />} />
               <Route path='/dashboard/flashdecks/beginpractice' element={<DashboardLayout children={<PracticeChoose />} />} />
               {/* <Route path='/dashboard/else' element={<> this is an else page new page</>} /> */}
             </Route>
