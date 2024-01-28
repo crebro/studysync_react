@@ -30,7 +30,7 @@ export default function Dashboard(props) {
                     </div>
 
 
-                    <div className="flex items-center mt-4 ">
+                    <div className="flex items-center mt-4 flex-wrap">
                         <Link to="/dashboard/your-spaces" className="flex-1 p-4 bg-gray-200 rounded-lg mx-2">
                             <div className="text-2xl"> Your Spaces </div>
                             <div className="text-sm"> Where you can share what you know. Collaborate with your friends, learn something new. </div>

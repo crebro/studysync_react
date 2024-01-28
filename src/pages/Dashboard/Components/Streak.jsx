@@ -34,14 +34,12 @@ export default function Streak(props) {
                         Array(7).fill(0).map((_, i) => {
                             return <div className='mx-4 flex flex-col items-center' >
                                 {
-                                    daysStreak.includes(i) ? <CheckCircleSolid /> : <CheckCircle />
+                                    daysStreak.includes(i !== 6 ? i + 1 : 0) ? <CheckCircleSolid /> : <CheckCircle />
                                 }
-                                <div> {days[i]} </div>
+                                <div> {days[i !== 6 ? i + 1 : 0]} </div>
                             </div>
                         })
                     }
-                    {/* <CheckCircle />
-                            <CheckCircleSolid /> */}
                 </div>
 
 

@@ -9,7 +9,7 @@ export default function Navigation() {
 
     return (
         <>
-            <div className='w-full items-center flex justify-evenly bg-[#332727] py-4'>
+            <div className='w-full items-center flex justify-evenly bg-[#332727] py-4 flex-wrap'>
                 <div className="flex items-center">
                     <Link to="/dashboard"><img src={studysynclogo} className='w-14 h-14 rounded-full' /> </Link>
                     <input className='px-4 py-2 text-lg rounded-3xl ml-2' placeholder='Search in your spaces' />
